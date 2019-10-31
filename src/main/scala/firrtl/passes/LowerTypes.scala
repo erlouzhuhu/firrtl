@@ -5,6 +5,7 @@ package firrtl.passes
 import scala.collection.mutable
 import firrtl._
 import firrtl.ir._
+import firrtl.options.Dependency
 import firrtl.Utils._
 import MemPortUtils.memType
 import firrtl.Mappers._
@@ -25,7 +26,7 @@ import firrtl.annotations.MemoryInitAnnotation
   */
 object LowerTypes extends Transform with DependencyAPIMigration {
 
-  override def prerequisites = firrtl.stage.Forms.MidForm
+  override def prerequisites = Dependency[firrtl.transforms.CollapseVectors] +: firrtl.stage.Forms.MidForm
 
   override def optionalPrerequisiteOf = Seq.empty
 

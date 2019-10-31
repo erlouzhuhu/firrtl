@@ -61,7 +61,8 @@ object Forms {
          Dependency[firrtl.transforms.formal.AssertSubmoduleAssumptions] )
 
   val LowForm: Seq[TransformDependency] = MidForm ++
-    Seq( Dependency(passes.LowerTypes),
+    Seq( Dependency[firrtl.transforms.CollapseVectors],
+         Dependency(passes.LowerTypes),
          Dependency(passes.Legalize),
          Dependency(firrtl.transforms.RemoveReset),
          Dependency[firrtl.transforms.CheckCombLoops],
